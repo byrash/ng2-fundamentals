@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="/">
+    <title>Angular Quickstart</title>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            color: #369;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+    <link rel="stylesheet" href="node_modules/toastr/build/toastr.css">
+    <link rel="stylesheet" href="node_modules/ng2f-bootstrap/dist/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+
+    <!-- Polyfills -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/toastr/build/toastr.min.js"></script>
+
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="systemjs.config.js"></script>
+    <script>
+        System.import('main.js').catch(function (err) {
+            console.error(err);
+        });
+    </script>
+</head>
+
+<body>
+<events-app>Loading Events content here ...</events-app>
+</body>
+
+</html>
