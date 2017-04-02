@@ -14,7 +14,8 @@ import {
     Error404Component,
     EventRouteActivator,
     EventListResolver,
-    CreateSessionComponent
+    CreateSessionComponent,
+    CollapsibleWellComponent
 } from "./index";
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./routes";
@@ -35,7 +36,8 @@ import {SessionsListComponent} from "./sessions-list/sessions-list.component";
         CreateEventComponent,
         Error404Component,
         CreateSessionComponent,
-        SessionsListComponent],
+        SessionsListComponent,
+        CollapsibleWellComponent],
     providers: [EventService,
         ToastrService,
         EventRouteActivator,

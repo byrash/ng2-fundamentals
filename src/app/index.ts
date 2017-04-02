@@ -2,7 +2,8 @@
  * Created by Shivaji on 14/3/17.
  */
 export * from './create-event/create-event.component'
-export * from './errors/error.component'
+export * from './common/error.component'
+export * from './common/collapsible-well.component'
 export * from './event-details/event-details.component'
 export * from './event-thumbnail/event-thumbnail.component'
 export * from './events-list/events-list.componenet'

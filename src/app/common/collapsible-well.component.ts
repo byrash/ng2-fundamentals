@@ -1,0 +1,23 @@
+import {Component} from "@angular/core";
+/**
+ * Created by Shivaji on 2/4/17.
+ */
+@Component({
+    selector: 'collapsible-well',
+    template: `
+        <div (click)="toggleContent()" class="well pointable">
+            <h4>
+                <ng-content select="[well-title]"></ng-content>
+            </h4>
+            <ng-content *ngIf="visible" select="[well-body]"></ng-content>
+        </div>
+    `
+})
+export class CollapsibleWellComponent {
+    visible: boolean = true;
+
+    toggleContent() {
+        this.visible = !this.visible;
+    }
+
+}
