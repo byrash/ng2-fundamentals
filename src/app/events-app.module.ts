@@ -9,6 +9,7 @@ import {
     NavBarComponent,
     EventService,
     TOASTR_TOKEN,
+    JQ_TOKEN,
     Toastr,
     EventDetailsComponent,
     CreateEventComponent,
@@ -17,7 +18,9 @@ import {
     EventListResolver,
     CreateSessionComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent,
+    ModalTriggerDirective
 } from "./index";
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./routes";
@@ -26,7 +29,8 @@ import {AuthService} from "./user/auth/auth.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SessionsListComponent} from "./sessions-list/sessions-list.component";
 
-declare let toastr: Toastr
+declare let toastr: Toastr;
+declare let jQuery: Object;
 
 @NgModule({
     imports: [BrowserModule,
@@ -42,9 +46,12 @@ declare let toastr: Toastr
         CreateSessionComponent,
         SessionsListComponent,
         CollapsibleWellComponent,
-        DurationPipe],
+        DurationPipe,
+        SimpleModalComponent,
+        ModalTriggerDirective],
     providers: [EventService,
         {provide: TOASTR_TOKEN, useValue: toastr},
+        {provide: JQ_TOKEN, useValue: jQuery},
         EventRouteActivator,
         {
             provide: 'canDeactivateCreateEvent',

@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
+import {EventEmitter, Injectable} from "@angular/core";
 import {Subject, Observable} from "rxjs/RX";
-import {IEvent} from "../model/event.model";
+import {IEvent, ISession} from "../model/event.model";
 /**
  * Created by Shivaji on 13/3/17.
  */
@@ -29,6 +29,26 @@ export class EventService {
     updateEvent(event: IEvent) {
         let index = EVENTS.findIndex(x => x.id === event.id);
         EVENTS[index] = event;
+    }
+
+    searchSessions(searchTerm: string) {
+        let term = searchTerm.toLocaleLowerCase();
+        var results: ISession[] = [];
+
+        EVENTS.forEach(event => {
+            var matchingSessions = event.sessions.filter(session => session.name.toLocaleLowerCase().indexOf(term) > -1);
+            matchingSessions = matchingSessions.map((session: any) => {
+                session.eventId = event.id;
+                return session;
+            });
+            results = results.concat(matchingSessions);
+        });
+
+        var emitter = new EventEmitter(true);// Setting true will make it observable
+        setTimeout(() => {
+            emitter.emit(results)
+        }, 100);
+        return emitter;
     }
 }
 
