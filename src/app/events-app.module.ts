@@ -20,7 +20,10 @@ import {
     CollapsibleWellComponent,
     DurationPipe,
     SimpleModalComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    UpvoteComponent,
+    VoterService,
+    LocationValidator
 } from "./index";
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./routes";
@@ -48,7 +51,9 @@ declare let jQuery: Object;
         CollapsibleWellComponent,
         DurationPipe,
         SimpleModalComponent,
-        ModalTriggerDirective],
+        ModalTriggerDirective,
+        UpvoteComponent,
+        LocationValidator],
     providers: [EventService,
         {provide: TOASTR_TOKEN, useValue: toastr},
         {provide: JQ_TOKEN, useValue: jQuery},
@@ -58,7 +63,8 @@ declare let jQuery: Object;
             useValue: checkDirtyState
         },
         EventListResolver, // Short notation of below mode
-        {provide: AuthService, useClass: AuthService}],// Long hand notation
+        {provide: AuthService, useClass: AuthService},// Long hand notation
+        VoterService],
     bootstrap: [EventsAppComponent]
 })
 

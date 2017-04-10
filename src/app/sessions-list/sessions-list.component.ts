@@ -1,5 +1,7 @@
 import {Component, Input, OnChanges} from "@angular/core";
 import {ISession} from "../model/event.model";
+import {AuthService} from "../user/auth/auth.service";
+import {VoterService} from "../services/voter.service";
 /**
  * Created by Shivaji on 2/4/17.
  */
@@ -12,6 +14,10 @@ export class SessionsListComponent implements OnChanges {
     @Input() filterBy: string;
     @Input() sortBy: string;
     visibleSessions: ISession[];
+
+    constructor(private auth: AuthService, private voterService: VoterService) {
+
+    }
 
 
     ngOnChanges() {
@@ -31,6 +37,23 @@ export class SessionsListComponent implements OnChanges {
             });
         }
     }
+
+    toggelVote(session: ISession) {
+        if (this.userHasVoted(session)) {
+            this.voterService.deleteVoter(session, this.getCurrentUserName());
+        } else {
+            this.voterService.addVoter(session, this.getCurrentUserName());
+        }
+    }
+
+    userHasVoted(session: ISession) {
+        return this.voterService.hasUserVoted(session, this.getCurrentUserName());
+    }
+
+    private getCurrentUserName(): string {
+        return this.auth.currentUser.userName;
+    }
+
 }
 
 function sortByVotes(s1: ISession, s2: ISession) {

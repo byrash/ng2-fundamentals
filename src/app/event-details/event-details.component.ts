@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {EventService} from "../services/event.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Params} from "@angular/router";
 import {IEvent, ISession} from "../model/event.model";
 /**
  * Created by Shivaji on 13/3/17.
@@ -35,7 +35,17 @@ export class EventDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.event = this.eventService.getEvent(+this.route.snapshot.params['id']);
+        this.route.params.forEach((param: Params) => {
+            this.event = this.eventService.getEvent(+param['id']);
+            this.resetState();
+        });
+        //this.event = this.eventService.getEvent(+this.route.snapshot.params['id']);
+    }
+
+    private resetState() {
+        this.addSessionMode = false;
+        this.filterBy = 'all';
+        this.sortBy = 'votes';
     }
 
     addSession() {
