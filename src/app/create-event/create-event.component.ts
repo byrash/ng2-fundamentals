@@ -8,11 +8,27 @@ import {EventService} from "../services/event.service";
 @Component({
     templateUrl: 'app/create-event/create-event.component.html',
     styles: [`
-        em { float: right; color: #E05C65; padding-left: 10pc;}
-        .error input {background-color: #E3C3C5;}
-        .error ::-webkit-input-placeholder {color: #999;}
-        .error ::-moz-placeholder {color: #999;}
-        .error :-ms-input-placeholder {color: #999;}
+        em {
+            float: right;
+            color: #E05C65;
+            padding-left: 10pc;
+        }
+
+        .error input {
+            background-color: #E3C3C5;
+        }
+
+        .error ::-webkit-input-placeholder {
+            color: #999;
+        }
+
+        .error ::-moz-placeholder {
+            color: #999;
+        }
+
+        .error :-ms-input-placeholder {
+            color: #999;
+        }
     `]
 })
 export class CreateEventComponent {
@@ -23,9 +39,10 @@ export class CreateEventComponent {
     }
 
     saveEvent(formValues) {
-        this.eventService.saveEvent(formValues);
-        this.isDirty = false;
-        this.router.navigate(['/events'])
+        this.eventService.saveEvent(formValues).subscribe(event => {
+            this.isDirty = false;
+            this.router.navigate(['/events'])
+        });
     }
 
     cancel() {
