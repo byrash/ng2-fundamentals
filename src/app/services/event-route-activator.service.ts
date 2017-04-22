@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {CanActivate, ActivatedRouteSnapshot, Router} from "@angular/router";
+import {CanActivate, ActivatedRouteSnapshot, Router, ActivatedRoute} from "@angular/router";
 import {EventService} from "./event.service";
 import {AuthService} from "../user/auth/auth.service";
 /**
@@ -7,19 +7,24 @@ import {AuthService} from "../user/auth/auth.service";
  */
 @Injectable()
 export class EventRouteActivator implements CanActivate {
-    constructor(private eventService: EventService, private router: Router, private auth: AuthService) {
+    constructor(private eventService: EventService, private router: Router, private auth: AuthService, private route: ActivatedRoute) {
 
     }
 
     canActivate(route: ActivatedRouteSnapshot) {
-        const eventExists = !!this.eventService.getEvent((+route.params['id']));
 
-        if (!eventExists) {
-            this.router.navigate(['/404']);
-        }else if(!this.auth.isAuthenticated()){
-            this.router.navigate(['/user/login']);
+        if (!this.auth.isAuthenticated()) {
+            // redirectUrl
+            this.router.navigate(['/user/login/' + route.params['id']]);
+        } else {
+            // const eventExists = this.route.snapshot.data['event'];
+            // console.log(eventExists);
+            // if (!eventExists) {
+            //     this.router.navigate(['/404']);
+            // } else {
+                return true;
+            // }
         }
-        return eventExists;
     }
 
 }

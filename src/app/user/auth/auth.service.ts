@@ -11,7 +11,7 @@ export class AuthService {
         this.currentUser = {
             id: 1,
             userName: userName,
-            firstName: 'Shiv',
+            firstName: 'Shiv @'+userName,
             lastName: 'Byra'
         }
     }

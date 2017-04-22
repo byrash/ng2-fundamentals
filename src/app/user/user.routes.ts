@@ -6,5 +6,6 @@ import {LoginComponent} from "./login/login.component";
  */
 export const userRoutes: Routes = [
     {path: 'profile', component: ProfileComponent},
+    {path: 'login/:eventId', component: LoginComponent},
     {path: 'login', component: LoginComponent}
 ];

@@ -1,6 +1,6 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {AuthService} from "../auth/auth.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 /**
  * Created by Shivaji on 14/3/17.
  */
@@ -10,18 +10,30 @@ import {Router} from "@angular/router";
         em {float: right; color: #E05C65; padding-left: 10px}
         `]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
+    redirectUrl : String = 'events';
 
-    constructor(private authService: AuthService, private router: Router) {
+    constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {
 
     }
 
     login(formValues) {
         this.authService.loginUser(formValues.userName, formValues.password);
-        this.router.navigate(['events']);
+        this.router.navigate([this.redirectUrl]);
     }
 
     cancel() {
-        this.router.navigate(['events']);
+        this.router.navigate([this.redirectUrl]);
+    }
+
+
+    ngOnInit(): void {
+        this.route.params.forEach((param: Params) => {
+            if(param['eventId']){
+                this.redirectUrl = 'event/'+param['eventId'];
+            }else{
+                this.redirectUrl = 'events';
+            }
+        });
     }
 }

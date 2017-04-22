@@ -16,6 +16,7 @@ import {
     Error404Component,
     EventRouteActivator,
     EventListResolver,
+    EventResolver,
     CreateSessionComponent,
     CollapsibleWellComponent,
     DurationPipe,
@@ -31,6 +32,7 @@ import {EventsAppComponent} from "./events-app.componenet";
 import {AuthService} from "./user/auth/auth.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SessionsListComponent} from "./sessions-list/sessions-list.component";
+import {HttpModule} from "@angular/http";
 
 declare let toastr: Toastr;
 declare let jQuery: Object;
@@ -38,7 +40,8 @@ declare let jQuery: Object;
 @NgModule({
     imports: [BrowserModule,
         RouterModule.forRoot(appRoutes),
-        FormsModule, ReactiveFormsModule],
+        FormsModule, ReactiveFormsModule,
+        HttpModule],
     declarations: [EventsAppComponent,
         EventsListComponent,
         EventThumbnailComponent,
@@ -62,6 +65,7 @@ declare let jQuery: Object;
             provide: 'canDeactivateCreateEvent',
             useValue: checkDirtyState
         },
+        EventResolver,
         EventListResolver, // Short notation of below mode
         {provide: AuthService, useClass: AuthService},// Long hand notation
         VoterService],
