@@ -2,6 +2,7 @@ import {Component, Input, OnChanges} from "@angular/core";
 import {ISession} from "../model/event.model";
 import {AuthService} from "../user/auth/auth.service";
 import {VoterService} from "../services/voter.service";
+import {Http} from "@angular/http";
 /**
  * Created by Shivaji on 2/4/17.
  */
@@ -13,6 +14,7 @@ export class SessionsListComponent implements OnChanges {
     @Input() sessions: ISession[];
     @Input() filterBy: string;
     @Input() sortBy: string;
+    @Input() eventId: number;
     visibleSessions: ISession[];
 
     constructor(private auth: AuthService, private voterService: VoterService) {
@@ -40,9 +42,9 @@ export class SessionsListComponent implements OnChanges {
 
     toggelVote(session: ISession) {
         if (this.userHasVoted(session)) {
-            this.voterService.deleteVoter(session, this.getCurrentUserName());
+            this.voterService.deleteVoter(this.eventId, session, this.getCurrentUserName());
         } else {
-            this.voterService.addVoter(session, this.getCurrentUserName());
+            this.voterService.addVoter(this.eventId, session, this.getCurrentUserName());
         }
     }
 
