@@ -27,7 +27,7 @@ export class EventService {
             ).catch(this.handleError);
     }
 
-    saveEvent(event: IEvent) : Observable<IEvent> {
+    saveEvent(event: IEvent): Observable<IEvent> {
         // let headers = new Headers({'Content-Type': 'application/json'});
         // let options = new RequestOptions({headers: headers});
         return this.http.post('http://localhost:8080/event', JSON.stringify(event))
@@ -59,22 +59,25 @@ export class EventService {
 
     searchSessions(searchTerm: string) {
         let term = searchTerm.toLocaleLowerCase();
-        var results: ISession[] = [];
-
-        EVENTS.forEach(event => {
-            var matchingSessions = event.sessions.filter(session => session.name.toLocaleLowerCase().indexOf(term) > -1);
-            matchingSessions = matchingSessions.map((session: any) => {
-                session.eventId = event.id;
-                return session;
-            });
-            results = results.concat(matchingSessions);
-        });
-
-        var emitter = new EventEmitter(true);// Setting true will make it observable
-        setTimeout(() => {
-            emitter.emit(results)
-        }, 100);
-        return emitter;
+        // var results: ISession[] = [];
+        //
+        // EVENTS.forEach(event => {
+        //     var matchingSessions = event.sessions.filter(session => session.name.toLocaleLowerCase().indexOf(term) > -1);
+        //     matchingSessions = matchingSessions.map((session: any) => {
+        //         session.eventId = event.id;
+        //         return session;
+        //     });
+        //     results = results.concat(matchingSessions);
+        // });
+        //
+        // var emitter = new EventEmitter(true);// Setting true will make it observable
+        // setTimeout(() => {
+        //     emitter.emit(results)
+        // }, 100);
+        // return emitter;
+        return this.http.get('http://localhost:8080/sessions/search?searchTerm=' + term)
+            .map((resp: Response) => {return resp.json();})
+            .catch(this.handleError);
     }
 
     private handleError(error: Response) {
