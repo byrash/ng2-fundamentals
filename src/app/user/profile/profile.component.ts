@@ -57,9 +57,11 @@ export class ProfileComponent implements OnInit {
 
     saveProfile(formValues) {
         if (this.profileFormGrp.valid) {
-            this.authService.updateCurrentUser(formValues.firstName, formValues.lastName);
+            this.authService.updateCurrentUser(formValues.firstName, formValues.lastName).subscribe(() => {
+                this.toastr.success('User Saved Succesfully');
+                this.router.navigate(['/events']);
+            });
             // this.router.navigate(['events']);
-            this.toastr.success('User Saved Succesfully');
         }
     }
 
@@ -69,5 +71,11 @@ export class ProfileComponent implements OnInit {
 
     validateLastName() {
         return this.lastName.valid || this.lastName.untouched;
+    }
+
+    logout() {
+        this.authService.logout().subscribe(() => {
+            this.router.navigate(['/user/login']);
+        });
     }
 }

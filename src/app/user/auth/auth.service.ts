@@ -2,6 +2,8 @@ import {Injectable} from "@angular/core";
 import {IUser} from "./user.model";
 import {Http, Response} from "@angular/http";
 import {Observable} from "rxjs/Observable";
+import {Res} from "awesome-typescript-loader/dist/checker/protocol";
+import {isUndefined} from "util";
 /**
  * Created by Shivaji on 16/3/17.
  */
@@ -40,5 +42,26 @@ export class AuthService {
     updateCurrentUser(firstName: string, lastName: string) {
         this.currentUser.firstName = firstName;
         this.currentUser.lastName = lastName;
+        return this.http.put(`http://localhost:8080/user/${this.currentUser.id}`, this.currentUser);
+    }
+
+    identify() {
+        return this.http.get('http://localhost:8080/identify').map((resp: any) => {
+            if (resp._body) {
+                return resp.json();
+            } else {
+                return {};
+            }
+        }).do(currentUser => {
+            if (!!currentUser.userName) {
+                this.currentUser = currentUser;
+            }
+        }).subscribe();
+    }
+
+    logout() {
+        return this.http.post('http://localhost:8080/logout', {}).do(() => {
+            this.currentUser = undefined;
+        });
     }
 }

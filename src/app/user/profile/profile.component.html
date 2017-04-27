@@ -19,8 +19,11 @@
                        placeholder="Last Name..."/>
             </div>
 
-            <button type="submit" class="btn btn-primary" [disabled]="!validateFirstName() || !validateLastName()">Save</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!validateFirstName() || !validateLastName()">
+                Save
+            </button>
             <button (click)="cancel()" type="button" class="btn btn-default">Cancel</button>
+            <button (click)="logout()" type="button" class="btn btn-warning" style="float: right">Logout</button>
         </form>
     </div>
 </div>
