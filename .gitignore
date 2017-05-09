@@ -5,6 +5,6 @@ typings
 .vscode/
 .idea
 *.iml
-*.js
+src/app/**/*.js
 *.map
-
+tests.html
