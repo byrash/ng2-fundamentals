@@ -23,8 +23,8 @@ describe('SessionListComponentIT', () => {
             currentUser: {userName: 'Shiv'}
         };
         let mockVoterService = {
-            hasUserVoted: () => true;
-    }
+                hasUserVoted: () => true
+            }
         ;
 
         TestBed.configureTestingModule({

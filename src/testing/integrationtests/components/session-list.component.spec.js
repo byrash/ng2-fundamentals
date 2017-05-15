@@ -1,6 +1,7 @@
 "use strict";
 var testing_1 = require("@angular/core/testing");
 var sessions_list_component_1 = require("../../../app/sessions-list/sessions-list.component");
+var core_1 = require("@angular/core");
 var auth_service_1 = require("../../../app/user/auth/auth.service");
 var voter_service_1 = require("../../../app/services/voter.service");
 var upvote_component_1 = require("../../../app/upvote/upvote.component");
@@ -34,7 +35,7 @@ describe('SessionListComponentIT', function () {
                 { provide: auth_service_1.AuthService, useValue: mockAuthService },
                 { provide: voter_service_1.VoterService, useValue: mockVoterService }
             ],
-            schemas: []
+            schemas: [core_1.NO_ERRORS_SCHEMA] // if you dont want your test to fail on missing components
         }).compileComponents()
             .then(function () {
             fixture = testing_1.TestBed.createComponent(sessions_list_component_1.SessionsListComponent);
