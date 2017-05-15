@@ -1,6 +1,6 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {SessionsListComponent} from "../../../app/sessions-list/sessions-list.component";
-import {DebugElement} from "@angular/core";
+import {DebugElement, NO_ERRORS_SCHEMA} from "@angular/core";
 import {AuthService} from "../../../app/user/auth/auth.service";
 import {VoterService} from "../../../app/services/voter.service";
 import {ISession} from "../../../app/model/event.model";
@@ -39,7 +39,7 @@ describe('SessionListComponentIT', () => {
                 {provide: AuthService, useValue: mockAuthService},
                 {provide: VoterService, useValue: mockVoterService}
             ],
-            schemas: []
+            schemas: [NO_ERRORS_SCHEMA] // if you dont want your test to fail on missing components
         }).compileComponents()
             .then(() => {
                 fixture = TestBed.createComponent(SessionsListComponent);
