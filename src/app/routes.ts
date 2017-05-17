@@ -1,12 +1,12 @@
-import {EventsListComponent} from "./events-list/events-list.componenet";
-import {EventDetailsComponent} from "./event-details/event-details.component";
-import {Routes} from "@angular/router";
-import {CreateEventComponent} from "./create-event/create-event.component";
-import {Error404Component} from "./common/error.component";
-import {EventRouteActivator} from "./services/event-route-activator.service";
-import {EventListResolver} from "./services/events-list-resolver.service";
-import {CreateSessionComponent} from "./create-session/create-session.component";
-import {EventResolver} from "./services/event-resolver.service";
+import {EventsListComponent} from './events-list/events-list.componenet';
+import {EventDetailsComponent} from './event-details/event-details.component';
+import {Routes} from '@angular/router';
+import {CreateEventComponent} from './create-event/create-event.component';
+import {Error404Component} from './common/error.component';
+import {EventRouteActivator} from './services/event-route-activator.service';
+import {EventListResolver} from './services/events-list-resolver.service';
+import {CreateSessionComponent} from './create-session/create-session.component';
+import {EventResolver} from './services/event-resolver.service';
 /**
  * Created by Shivaji on 13/3/17.
  */

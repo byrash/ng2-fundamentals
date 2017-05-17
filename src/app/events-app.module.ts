@@ -1,8 +1,8 @@
 /**
  * Created by Shivaji on 12/3/17.
  */
-import {NgModule} from "@angular/core";
-import {BrowserModule} from "@angular/platform-browser";
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 import {
     EventsListComponent,
     EventThumbnailComponent,
@@ -25,14 +25,14 @@ import {
     UpvoteComponent,
     VoterService,
     LocationValidator
-} from "./index";
-import {RouterModule} from "@angular/router";
-import {appRoutes} from "./routes";
-import {EventsAppComponent} from "./events-app.componenet";
-import {AuthService} from "./user/auth/auth.service";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {SessionsListComponent} from "./sessions-list/sessions-list.component";
-import {HttpModule} from "@angular/http";
+} from './index';
+import {RouterModule} from '@angular/router';
+import {appRoutes} from './routes';
+import {EventsAppComponent} from './events-app.componenet';
+import {AuthService} from './user/auth/auth.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {SessionsListComponent} from './sessions-list/sessions-list.component';
+import {HttpModule} from '@angular/http';
 
 declare let toastr: Toastr;
 declare let jQuery: Object;
@@ -67,7 +67,7 @@ declare let jQuery: Object;
         },
         EventResolver,
         EventListResolver, // Short notation of below mode
-        {provide: AuthService, useClass: AuthService},// Long hand notation
+        {provide: AuthService, useClass: AuthService}, // Long hand notation
         VoterService],
     bootstrap: [EventsAppComponent]
 })
