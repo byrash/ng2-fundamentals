@@ -1,5 +1,6 @@
 import {EventEmitter, Injectable} from "@angular/core";
-import {Subject, Observable} from "rxjs/RX";
+import {Observable} from "rxjs/Observable";
+// import {Subject} from "rxjs/Subject";
 import {IEvent, ISession} from "../model/event.model";
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
 /**
@@ -85,6 +86,7 @@ export class EventService {
     }
 }
 
+/*
 const EVENTS: IEvent[] = [
     {
         id: 1,
@@ -395,4 +397,4 @@ const EVENTS: IEvent[] = [
             }
         ]
     }
-];
+];*/
